@@ -138,6 +138,13 @@ At the head, which acts as `top`; both operations are `O(1)`.
 both must become `NULL`.
 </details>
 
+<details>
+<summary><strong>21. What fields can a student-record node store?</strong></summary>
+
+The source example stores roll number, name, age and a pointer to the next
+student node.
+</details>
+
 ## Viva readiness
 
 - [ ] I can trace front and rear after every queue operation.

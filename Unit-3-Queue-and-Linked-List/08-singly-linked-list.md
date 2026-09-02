@@ -88,4 +88,197 @@ Reach the target and its predecessor, bypass the target using `previous->next = 
 - Free every removed node exactly once.
 - Never use a pointer after its node has been freed.
 
+## Complete menu-driven C implementation
+
+Positions in this program are **1-based**, which matches the step-by-step
+insertion and deletion descriptions in the faculty notes.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+Node *head = NULL;
+
+void display(void) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    for (Node *temp = head; temp != NULL; temp = temp->next) {
+        printf("%d ", temp->data);
+    }
+    printf("\n");
+}
+
+void insertFront(int data) {
+    Node *newNode = malloc(sizeof *newNode);
+    if (newNode == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    newNode->data = data;
+    newNode->next = head;
+    head = newNode;
+}
+
+void insertEnd(int data) {
+    Node *newNode = malloc(sizeof *newNode);
+    if (newNode == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+        return;
+    }
+
+    Node *temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+void insertAtPosition(int data, int position) {
+    if (position <= 1) {
+        insertFront(data);
+        return;
+    }
+
+    Node *temp = head;
+    for (int i = 1; temp != NULL && i < position - 1; i++) {
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        printf("Invalid position.\n");
+        return;
+    }
+
+    Node *newNode = malloc(sizeof *newNode);
+    if (newNode == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    newNode->data = data;
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+void deleteFront(void) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    Node *toDelete = head;
+    head = head->next;
+    free(toDelete);
+}
+
+void deleteEnd(void) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    if (head->next == NULL) {
+        free(head);
+        head = NULL;
+        return;
+    }
+
+    Node *previous = NULL;
+    Node *toDelete = head;
+    while (toDelete->next != NULL) {
+        previous = toDelete;
+        toDelete = toDelete->next;
+    }
+    previous->next = NULL;
+    free(toDelete);
+}
+
+void deleteAtPosition(int position) {
+    if (head == NULL || position < 1) {
+        printf("Invalid position.\n");
+        return;
+    }
+    if (position == 1) {
+        deleteFront();
+        return;
+    }
+
+    Node *previous = head;
+    for (int i = 1; previous != NULL && i < position - 1; i++) {
+        previous = previous->next;
+    }
+    if (previous == NULL || previous->next == NULL) {
+        printf("Invalid position.\n");
+        return;
+    }
+
+    Node *toDelete = previous->next;
+    previous->next = toDelete->next;
+    free(toDelete);
+}
+
+void freeList(void) {
+    while (head != NULL) {
+        deleteFront();
+    }
+}
+
+int main(void) {
+    int choice, data, position;
+
+    do {
+        printf("\n1.Insert front  2.Insert end  3.Insert position\n");
+        printf("4.Delete front  5.Delete end  6.Delete position\n");
+        printf("7.Display        0.Exit\nChoice: ");
+        if (scanf("%d", &choice) != 1) {
+            break;
+        }
+
+        switch (choice) {
+            case 1:
+                printf("Data: "); scanf("%d", &data); insertFront(data); break;
+            case 2:
+                printf("Data: "); scanf("%d", &data); insertEnd(data); break;
+            case 3:
+                printf("Data and 1-based position: ");
+                scanf("%d%d", &data, &position);
+                insertAtPosition(data, position); break;
+            case 4: deleteFront(); break;
+            case 5: deleteEnd(); break;
+            case 6:
+                printf("1-based position: "); scanf("%d", &position);
+                deleteAtPosition(position); break;
+            case 7: display(); break;
+            case 0: break;
+            default: printf("Invalid choice.\n");
+        }
+    } while (choice != 0);
+
+    freeList();
+    return 0;
+}
+```
+
+The pointer changes in the middle operations are the key exam steps:
+
+```text
+newNode->next = temp->next;   // preserve the remaining list
+temp->next = newNode;         // insert the new link
+
+previous->next = toDelete->next; // bypass the deleted node
+free(toDelete);                  // release its memory
+```
+
 **Next:** [09 - Doubly Linked List](09-doubly-linked-list.md)

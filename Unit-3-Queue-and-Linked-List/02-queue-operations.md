@@ -36,6 +36,67 @@ DEQUEUE(Q)
 
 Resetting both indices after removing the last item is essential; it restores the empty state.
 
+## Complete C implementation
+
+This program shows the four operations from the notes without hiding the
+`front` and `rear` updates.
+
+```c
+#include <stdio.h>
+
+#define SIZE 5
+
+int queue[SIZE];
+int front = -1;
+int rear = -1;
+
+void enqueue(int item) {
+    if (rear == SIZE - 1) {
+        printf("Queue Overflow\n");
+        return;
+    }
+    if (front == -1) {
+        front = 0;
+    }
+    queue[++rear] = item;
+}
+
+int dequeue(int *item) {
+    if (front == -1) {
+        printf("Queue Underflow\n");
+        return 0;
+    }
+
+    *item = queue[front++];
+    if (front > rear) {
+        front = rear = -1;
+    }
+    return 1;
+}
+
+void display(void) {
+    if (front == -1) {
+        printf("Queue is empty\n");
+        return;
+    }
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", queue[i]);
+    }
+    printf("\n");
+}
+
+void update(int position, int value) {
+    if (front == -1 || position < front || position > rear) {
+        printf("Invalid position\n");
+        return;
+    }
+    queue[position] = value;
+}
+```
+
+The position passed to `update` is the actual array index. A menu-driven
+program can call these functions after reading values from the user.
+
 ## Display / traversal
 
 ```c

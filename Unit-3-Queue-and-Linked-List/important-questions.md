@@ -45,6 +45,7 @@
 10. Implement a stack using linked nodes and analyse its operations.
 11. Implement a queue using `front` and `rear` linked pointers.
 12. Compare array and linked implementations of stacks and queues.
+13. Reproduce the student-record linked-list example with roll number, name and age.
 
 ## Complexity prompts
 

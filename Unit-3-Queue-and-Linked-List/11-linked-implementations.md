@@ -81,6 +81,25 @@ void enqueue(struct node **front, struct node **rear, int value) {
 }
 ```
 
+### Linked-stack peek and display
+
+```c
+int peek(struct node *top, int *value) {
+    if (top == NULL) {
+        return 0;
+    }
+    *value = top->data;
+    return 1;
+}
+
+void displayStack(struct node *top) {
+    for (struct node *temp = top; temp != NULL; temp = temp->next) {
+        printf("%d ", temp->data);
+    }
+    printf("\n");
+}
+```
+
 ### Dequeue
 
 ```text
@@ -90,6 +109,44 @@ void enqueue(struct node **front, struct node **rear, int value) {
 4. If front becomes NULL, also set rear = NULL.
 5. Free temp.
 ```
+
+### Complete linked-queue helpers
+
+```c
+int dequeue(struct node **front, struct node **rear, int *value) {
+    if (*front == NULL) {
+        printf("Queue Underflow\n");
+        return 0;
+    }
+
+    struct node *temp = *front;
+    *value = temp->data;
+    *front = temp->next;
+    if (*front == NULL) {
+        *rear = NULL;
+    }
+    free(temp);
+    return 1;
+}
+
+int peekQueue(struct node *front, int *value) {
+    if (front == NULL) {
+        return 0;
+    }
+    *value = front->data;
+    return 1;
+}
+
+void displayQueue(struct node *front) {
+    for (struct node *temp = front; temp != NULL; temp = temp->next) {
+        printf("%d ", temp->data);
+    }
+    printf("\n");
+}
+```
+
+When the last queue node is removed, both `front` and `rear` must become
+`NULL`; otherwise a stale rear pointer remains.
 
 ## Complexity
 

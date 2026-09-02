@@ -38,6 +38,7 @@ flowchart TD
 | 10 | Circular Linked List | [Start](10-circular-linked-list.md) |
 | 11 | Linked Stack and Queue | [Start](11-linked-implementations.md) |
 | 12 | Applications of Linked Lists | [Start](12-linked-list-applications.md) |
+| 13 | Student Record Linked List | [Start](13-student-record-linked-list.md) |
 
 ## Exam support
 
@@ -56,6 +57,7 @@ flowchart TD
 - [ ] Explain bidirectional links in a doubly linked list.
 - [ ] Traverse and update a circular linked list safely.
 - [ ] Implement a linked stack and linked queue.
+- [ ] Build and traverse a linked list of student records.
 
 **Previous:** [Unit 2 - Array and Stack](../Unit-2-Array-and-Stack/)  
 **Next:** [Unit 4 - Trees](../Unit-4-Trees/)

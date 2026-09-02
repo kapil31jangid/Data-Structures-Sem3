@@ -44,4 +44,88 @@ The supplied notes cover insertion and deletion at the beginning and end. With a
 
 Circular lists suit repeated cycles such as round-robin scheduling, circular buffers implemented with nodes, and playlists that loop continuously.
 
+## Complete circular-list operations in C
+
+Using a `tail` pointer makes the first node available as `tail->next`.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+Node *tail = NULL;
+
+void insertBeginning(int data) {
+    Node *node = malloc(sizeof *node);
+    if (node == NULL) return;
+    node->data = data;
+
+    if (tail == NULL) {
+        tail = node;
+        node->next = node;
+    } else {
+        node->next = tail->next;
+        tail->next = node;
+    }
+}
+
+void insertEnd(int data) {
+    insertBeginning(data);
+    tail = tail->next;
+}
+
+void deleteBeginning(void) {
+    if (tail == NULL) return;
+
+    Node *head = tail->next;
+    if (head == tail) {
+        tail = NULL;
+    } else {
+        tail->next = head->next;
+    }
+    free(head);
+}
+
+void deleteEnd(void) {
+    if (tail == NULL) return;
+
+    Node *head = tail->next;
+    if (head == tail) {
+        free(tail);
+        tail = NULL;
+        return;
+    }
+
+    Node *previous = head;
+    while (previous->next != tail) {
+        previous = previous->next;
+    }
+    previous->next = tail->next;
+    free(tail);
+    tail = previous;
+}
+
+void traverse(void) {
+    if (tail == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    Node *head = tail->next;
+    Node *current = head;
+    do {
+        printf("%d ", current->data);
+        current = current->next;
+    } while (current != head);
+    printf("\n");
+}
+```
+
+The stopping test compares the current pointer with the starting pointer. A
+test for `NULL` would never stop because circular lists have no `NULL` link.
+
 **Next:** [11 - Linked Implementations](11-linked-implementations.md)
