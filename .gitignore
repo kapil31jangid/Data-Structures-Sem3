@@ -1,69 +1,29 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+# Compiled files
+*.exe
+*.out
 *.o
 *.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
+# Debug files
+*.pdb
 *.ilk
 
-# Debugger Files
-*.pdb
+# VS Code
+.vscode/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.so.*
+# Dev-C++
+*.layout
+*.dev
 
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Build directories
-build/
-Build/
-build-*/
-
-# CMake generated files
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-install_manifest.txt
-compile_commands.json
-
-# Temporary files
-*.tmp
-*.log
+# Turbo C / temporary files
 *.bak
-*.swp
+*.tmp
 
-# vcpkg
-vcpkg_installed/
+# Operating system
+.DS_Store
+Thumbs.db
 
-# debug information files
-*.dwo
-
-# test output & cache
-Testing/
-.cache/
+# Temporary output
+output/
+build/
+bin/
