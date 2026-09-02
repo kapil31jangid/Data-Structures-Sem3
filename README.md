@@ -54,9 +54,9 @@ Concept → Algorithm → Code → Dry Run → Practice → Viva → Revision
 
 ## Progress
 
-- [ ] Unit 1
-- [ ] Unit 2
-- [ ] Unit 3
+- [x] Unit 1
+- [x] Unit 2
+- [x] Unit 3
 - [ ] Unit 4
 - [ ] Unit 5
 - [ ] Unit 6
