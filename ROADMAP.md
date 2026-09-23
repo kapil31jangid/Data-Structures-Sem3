@@ -26,11 +26,12 @@
 - [ ] Circular Linked List
 
 ## Trees
-- [ ] Binary Tree
-- [ ] Tree Traversals
-- [ ] BST
+- [x] Binary Tree
+- [x] Tree Traversals
+- [x] BST
 - [ ] Heap
-- [ ] AVL Tree
+- [x] AVL Tree
+- [x] B-Tree and B+ Tree
 
 ## Graphs
 - [ ] Graph Representation
