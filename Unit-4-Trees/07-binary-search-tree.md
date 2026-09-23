@@ -10,20 +10,20 @@
 
 - **Definition:** A **Binary Search Tree (BST)** is a binary tree in which every node contains **only smaller values in its left subtree** and **only larger values in its right subtree**.
 - **Formal BST Ordering Property:** For any node with key $K$:
-  $$\text{All keys in Left Subtree} \le K < \text{All keys in Right Subtree}$$
+  $$\text{All keys in Left Subtree} < K < \text{All keys in Right Subtree}$$
 - **Golden Rule:** *"Every Binary Search Tree is a binary tree, but all Binary Trees need not be binary search trees."*
 
 ```text
                [ Node K ]
               /          \
     (Left Subtree)     (Right Subtree)
-    All values <= K    All values > K
+    All values < K     All values > K
 ```
 
 ```mermaid
 graph TD
     Root["Node with value K"]
-    L["Left Subtree\n(Contains only smaller values <= K)"]
+    L["Left Subtree\n(Contains only smaller values < K)"]
     R["Right Subtree\n(Contains only larger values > K)"]
     Root --> L
     Root --> R
