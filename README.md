@@ -59,7 +59,7 @@ Concept → Algorithm → Code → Dry Run → Practice → Viva → Revision
 - [x] Unit 3
 - [x] Unit 4
 - [ ] Unit 5
-- [ ] Unit 6
+- [x] Unit 6
 
 ### Lab Practicals
 

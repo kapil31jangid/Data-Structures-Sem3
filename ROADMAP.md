@@ -42,7 +42,8 @@
 - [ ] Minimum Spanning Tree
 
 ## Hashing and File Structure
-- [ ] Hashing
-- [ ] Collision Resolution
-- [ ] Blockchain Hashing
-- [ ] File Organisation
+- [x] Hashing
+- [x] Collision Resolution
+- [x] Blockchain Hashing
+- [x] File Organisation
+- [x] Indexing
