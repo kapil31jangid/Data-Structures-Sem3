@@ -30,39 +30,58 @@ When the root is placed at index `0`:
 
 ### Example from Course Material (Slide 18)
 
-Consider the binary tree from slide 18:
+Consider the binary tree presented in Slide 18:
 
 ```text
                A
              /   \
             B     C
           /   \  /  \
-         D     F G   H
-        / \           \
-       I   J           K
+         D     E F   G
+        / \
+       H   I
 ```
 
-#### Array Layout (1-Based Faculty Layout from Slide 18):
+```mermaid
+graph TD
+    A((A)) --- B((B))
+    A --- C((C))
+    B --- D((D))
+    B --- E((E))
+    C --- F((F))
+    C --- G((G))
+    D --- H((H))
+    D --- I((I))
+```
+
+#### Array Layout (1-Based Indexing):
 
 ```text
-Index: [ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 ]
-Data:  [ A | B | C | D | - | F | G | H | I | J  |  - |  - |  - |  K |  - ]
+Index: [ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 ]
+Data:  [ A | B | C | D | E | F | G | H | I ]
 ```
 
 - **Index 1:** `A` (Root)
 - **Children of `A` (index 1):** Left at $2(1) = 2$ (`B`), Right at $2(1)+1 = 3$ (`C`)
-- **Children of `B` (index 2):** Left at $2(2) = 4$ (`D`), Right at $2(2)+1 = 5$ (empty `-`)
+- **Children of `B` (index 2):** Left at $2(2) = 4$ (`D`), Right at $2(2)+1 = 5$ (`E`)
 - **Children of `C` (index 3):** Left at $2(3) = 6$ (`F`), Right at $2(3)+1 = 7$ (`G`)
 - **Children of `D` (index 4):** Left at $2(4) = 8$ (`H`), Right at $2(4)+1 = 9$ (`I`)
-- **Children of `G` (index 7):** Left at $2(7) = 14$ (`K`)
-- Unused/empty positions are marked with `-` (or `NULL`).
+- **Leaves `E, F, G, H, I`:** Have no children (their calculated child positions exceed array bounds or hold `NULL`).
 
 #### Equivalent 0-Based Array Layout:
 
 ```text
-Index: [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 ]
-Data:  [ A | B | C | D | - | F | G | H | I | J |  - |  - |  - |  K |  - ]
+Index: [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ]
+Data:  [ A | B | C | D | E | F | G | H | I ]
 ```
+
+- **Index 0:** `A` (Root)
+- **Children of `A` (index 0):** Left at $2(0)+1 = 1$ (`B`), Right at $2(0)+2 = 2$ (`C`)
+- **Children of `B` (index 1):** Left at $2(1)+1 = 3$ (`D`), Right at $2(1)+2 = 4$ (`E`)
+- **Children of `C` (index 2):** Left at $2(2)+1 = 5$ (`F`), Right at $2(2)+2 = 6$ (`G`)
+- **Children of `D` (index 3):** Left at $2(3)+1 = 7$ (`H`), Right at $2(3)+2 = 8$ (`I`)
+
+> **Source note on Slide 18:** In the faculty slide, the left box presents an array illustration with omitted child entries (`[A, B, C, D, -, F, G, H, I, J, -, -, -, K, -]`), while the right box provides the complete tree structure with nodes `A` through `I`. The representation above unifies these views into an internally consistent model matching the slide's linked structure.
 
 ---
 
@@ -111,12 +130,13 @@ For leaf nodes or missing children, `LPTR` and `RPTR` hold `NULL` (marked as `X`
     |               |                                     |               |
     ▼               ▼                                     ▼               ▼
 +-------+-------+-------+ +-------+-------+-------+ +-------+-------+-------+ +-------+-------+-------+
-|   •   |   D   |   X   | |   X   |   E   |   X   | |   X   |   F   |   X   | |   X   |   G   |   X   |
-+---|---+-------+-------+ +-------+-------+-------+ +-------+-------+-------+ +-------+-------+-------+
-    |
-    +-------+-------+-------+ +-------+-------+-------+
-    |   X   |   H   |   X   | |   X   |   I   |   X   |
-    +-------+-------+-------+ +-------+-------+-------+
+|   •   |   D   |   •   | |   X   |   E   |   X   | |   X   |   F   |   X   | |   X   |   G   |   X   |
++---|---+-------+---|---+ +-------+-------+-------+ +-------+-------+-------+ +-------+-------+-------+
+    |               |
+    ▼               ▼
++-------+-------+-------+ +-------+-------+-------+
+|   X   |   H   |   X   | |   X   |   I   |   X   |
++-------+-------+-------+ +-------+-------+-------+
 ```
 
 ---

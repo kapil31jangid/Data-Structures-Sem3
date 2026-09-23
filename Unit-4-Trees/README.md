@@ -4,7 +4,7 @@
 
 Unit 4 introduces non-linear, hierarchical data structures: tree definitions and terminology, general tree representations, binary trees, binary tree representations, recursive traversals, tree construction from traversals, binary search trees (BST), conversion of general trees to binary trees, expression trees, threaded binary trees, height-balanced AVL trees with rotations and deletion cases, multi-way search trees, B-trees, and B+ trees.
 
-> **Source note:** Prepared from the faculty `Unit 4: Non-Linear Data Structures - Tree` study material (CEM2003C). All definitions, formulas, traversal algorithms, rotation cases, and worked examples strictly preserve the source syllabus.
+> **Source note:** Core Unit 4 concepts, definitions, examples, algorithms, and terminology are based on the faculty `Unit 4: Non-Linear Data Structures - Tree` study material. Additional explanatory examples and standard supplementary details are clearly identified where included.
 
 ## Unit roadmap
 

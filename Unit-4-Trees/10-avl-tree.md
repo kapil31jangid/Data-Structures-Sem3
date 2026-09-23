@@ -146,6 +146,8 @@ graph TD
 
 ## AVL Deletion & Deletion Cases (Slides 53–56)
 
+> **Source note:** The supplied faculty slides contain some inconsistent textual descriptions/labels for certain AVL deletion cases when compared with the worked diagrams and examples. This section follows the worked examples and rotation diagrams shown in the faculty material and retains its case notation for alignment with the source.
+
 When a node $X$ is deleted using standard BST deletion, the balance factor of ancestors can become $\pm 2$. If node $A$ becomes critical, the rotation depends on which subtree $X$ was deleted from and the Balance Factor of $A$'s other child $B$.
 
 ---

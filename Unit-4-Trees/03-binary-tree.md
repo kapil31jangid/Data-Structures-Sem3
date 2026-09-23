@@ -79,7 +79,7 @@ flowchart TD
 
 ### 2. Complete Binary Tree
 
-- **Definition:** A binary tree in which **every internal node has exactly two children** and **all leaf nodes are at the same level** is called a **Complete Binary Tree** (also referred to in standard computer science as a *Perfect Binary Tree*).
+- **Definition:** A binary tree in which **every internal node has exactly two children** and **all leaf nodes are at the same level** is called a **Complete Binary Tree**.
 
 #### Example (Slide 16):
 ```text
@@ -126,7 +126,7 @@ Original Binary Tree:                 Extended Binary Tree:
 |---|---|---|---|
 | **Child constraint** | Every node has 0 or 2 children | Every non-leaf has 2 children | Dummy nodes make all internal nodes have 2 children |
 | **Leaf position** | Leaves can appear at different levels | All leaves must be at the exact same lowest level | All leaves are dummy (external) nodes |
-| **Alternative name** | Full / Proper / 2-Tree | Perfect Binary Tree | 2-Tree with external nodes |
+| **Alternative name** | Full / Proper / 2-Tree | — | 2-Tree with external nodes |
 | **Leaves vs Nodes** | $\text{Leaves} = \text{Internal Nodes} + 1$ | $N = 2^{h+1} - 1$ | $\text{External} = \text{Internal} + 1$ |
 
 ---
